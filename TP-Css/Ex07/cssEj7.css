@@ -1,0 +1,13 @@
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    color: blue;
+}
+
+.autores{
+    font-weight: bold;
+}
+
+p{
+    font-style: italic;
+}
