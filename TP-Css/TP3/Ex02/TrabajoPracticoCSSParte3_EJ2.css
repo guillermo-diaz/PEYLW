@@ -13,7 +13,7 @@ img { border: none; }
 #contenedor {
   width: 90%;
   max-width: 900px;
-  width: expression(document.body.clientWidth > 901? "900px": "auto");
+
   margin: 0 auto;
 }
 

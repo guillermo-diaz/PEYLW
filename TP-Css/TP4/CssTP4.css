@@ -1,0 +1,133 @@
+/* ejercicio 1*/
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans, "lucida grande", tahoma, verdana, sans-serif;
+    font-size: 11px;
+    background-color: white;
+    color: black;
+
+}
+
+
+/* 
+Ejercicio 2
+#linkLists debería ser de un ancho de un 20% con respecto al navegador.
+✔ El resto de los elementos de la página deberían utilizar el 80% restante.
+✔ Mueva #linkLists al lado izquierdo de la página, a la misma altura de #intro.
+✔ h1 dentro de #pageHeader debería tener 10px de padding, un borde negro y de color
+de fondo el representado por #ddd.
+✔ h1 dentro de #pageHeader debería solaparse con h2 dentro de #pageHeader en 10px.
+✔ h2 dentro de #pageHeader debería tener un borde gris y 15px de padding.
+*/
+#intro,
+#supportingText {
+    float: right;
+    width: 80%;
+}
+
+#linkList {
+    float: left;
+    width: 20%;
+    position: absolute;
+    top: 4em;
+    
+}
+
+
+#pageHeader h1{
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #ddd;
+    margin-bottom: -10px;
+    position: relative;
+
+    /* solapado (no hace falta usar z-index,
+    con darle una posicion (relative) se pone por encima del otro
+    z-index: 10; 
+    
+    */
+    
+}
+
+#pageHeader h2 {
+    margin-top: 0;
+    padding: 15px;
+    border: 1px solid gray;
+    
+}
+
+/* Ejercicio 3 
+En el list de #lresources:
+• Eliminar los bullets.
+• El color de fondo debería ser #9cf.
+• Los links no deberían estar subrayados, deberían ser negrita y de color #036.
+• Cuanto hay un hover de un link, el fondo del color deberia cambiar a #036, y el
+color de texto #9cf.
+✔ En la lista de archivos, posicionar a “previous design” a la izquierda de “next design” y
+"view all designs" debajo de "next design".
+*/
+#lresources ul{
+    list-style-type: none;
+    background-color: #9cf;
+}
+
+#lresources a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #036;
+}
+
+#lresources a:hover{
+    background-color: #036;
+    color: #9cf
+}
+
+/* next design a la derecha*/
+#larchives ul li:nth-child(1) {
+    float: right;
+    margin-right: 40px;
+  }
+  
+  /* previous designs a la izq*/
+#larchives ul li:nth-child(2) {
+    float: left;
+  }
+  
+  /* all designs abajo*/
+#larchives ul li:nth-child(3) {
+    clear: both;
+  }
+
+
+  /* Ejercicio 4:
+✔ Reemplace las bullets en #lselect con la imagen blue_bullet.gif
+✔ Reempace el texto de h1 en #pageHeader con la imagen css_zen_garden.gif
+• Posicione esta imagen de fondo a 10px desde el top top, y 10px desde el left del
+borde existente.
+✔ Usar la imagen zen_h2_back.gif como el background de #pageHeader h2.
+✔ La imagen del fondo debería estar posicionada contra el borde más alto del elemento.
+✔ El color de fondo debería ser #489AED.
+✔ Debería estar repetida horizontalmente.*/
+
+#lselect ul {
+    list-style-image: url('blue_bullet.gif');
+}
+
+#pageHeader h1 {
+    background-image: url('css_zen_garden.gif');
+    background-repeat: no-repeat;
+    padding-bottom: 1em;
+    background-position: 10px 10px;
+    /*para que tape el texto de h1 (en realidad no lo tapa, solo lo mueve*/
+    text-indent: -99999px;
+}
+
+#pageHeader h2 {
+    background-image: url('zen_h2_back.gif');
+    background-repeat: repeat-x;
+    background-position: top;
+    background-color: #489AED;
+}
+
+  
