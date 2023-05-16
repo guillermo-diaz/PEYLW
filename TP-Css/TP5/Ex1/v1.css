@@ -1,0 +1,39 @@
+.container div{
+  border: 4px solid lightgrey; 
+  background-color: gray;
+  font-weight: bold;
+  padding-top: 1.5em;
+  padding-left: .5em;
+  padding-bottom: 25em;
+  padding-right: 5em;
+  box-sizing: border-box;
+}
+
+ #top { 
+    padding-bottom: 2.5em;
+    margin-bottom: 1em;
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+
+
+#izquierda {
+    float: left;
+    width: 10%;
+    margin-right: 2%;
+   
+
+}
+
+#centro {
+    text-align: center;
+    margin-right:2%;
+    float: left;
+    width: 76%;
+  
+}
+
+#derecha {
+    float: right;
+    width: 10%;
+}
