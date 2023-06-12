@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li onmouseover="change_color('white')">
+            Blanco
+        </li>
+        <li onmouseover="change_color('black')">
+            Negro
+        </li>
+        <li onmouseover="change_color('blue')" >
+            Azul
+        </li>
+        <li onmouseover="change_color('red')">
+            Rojo
+        </li>
+        <li onmouseover="change_color('yellow')" >
+            Amarillo
+        </li>
+    </ul>
+
+    <script>
+        function change_color(elem){
+            let color = elem;
+            let list = document.getElementById("list");
+            list.style.backgroundColor = color;
+        }
+    </script>
+</body>
+</html> 
+
+
