@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Parcial JS </title>
+  <link href="default.css" rel="stylesheet" type="text/css" />
+
+  <script>
+    // Resuelva el parcial en esta seccion
+    // Ud. puede usar o no esta variable. No es obligatorio.
+    var RegistroVotantes = new Array();
+    var votosKang = 0;
+    var votosKodos = 0;
+    var enBlanco = 0;
+   
+    function registrarVoto(){
+      var v1, v2, v3;
+      var dni = parseInt(document.getElementById("txDNI").value);
+      var candidato = (document.getElementById("txCandidato").value).toLowerCase(); //lo paso a minuscula para comparar
+      var sexo = (document.getElementById("txSexo").value).toLowerCase();
+      
+      v1 = verificarDni(dni);
+      v2 = verificarCandidato(candidato);
+      v3 = verificarSexo(sexo);
+
+      if (v1 && v2 && v3){
+        RegistroVotantes.push(dni); //agrego a los votantes
+        document.getElementById("Votantes").textContent = document.getElementById("Votantes").textContent+dni+" - ";  //cambio el texto
+        registrarVotoCandidato(candidato); //lo registro
+        limpiar();
+      }
+
+    }
+
+    function cerrarMesa(){
+      if (votosKang > votosKodos){
+        document.getElementById("dResultados").innerHTML = "<h2>Resultados: Ganó Kang con "+votosKang+" votos <img src='images/VoteKang.png' height='40' style='float:right'></h2> ";
+      } else if (votosKang < votosKodos){
+        document.getElementById("dResultados").innerHTML = "<h2>Resultados: Ganó Kodos con "+votosKodos+" votos <img src='images/VoteKodos.png' height='40' style='float:right'</h2>";
+      } else {
+        document.getElementById("dResultados").innerHTML = "<h2>Resultados: Empate</h2>";
+      }
+      document.getElementById("inputRegistrar").onclick = null;
+    }
+
+    function registrarVotoCandidato(voto){
+      switch (voto) {
+        case "kang":
+            votosKang++;
+            document.getElementById("ResultadosKang").textContent = votosKang;
+          break;
+        case "kodos":
+            votosKodos++;
+            document.getElementById("ResultadosKodos").textContent = votosKodos;
+          break;
+        case "blanco": 
+            enBlanco++;
+            document.getElementById("ResultadosBlanco").textContent = enBlanco;
+          break;
+      }
+    }
+
+    function verificarSexo(unSexo){
+      var flag = (unSexo === "m" || unSexo === "f");
+      if (flag){
+        verificado(document.getElementById("txSexo"));
+      } else {
+        reportarError(document.getElementById("txSexo"));
+      }
+      return flag;
+    }
+    function verificarCandidato(unCandidato) {
+      var flag = (unCandidato === "kang" || unCandidato === "kodos" || unCandidato === "blanco");
+      if (flag){
+        verificado(document.getElementById("txCandidato"));
+      } else {
+        reportarError(document.getElementById("txCandidato"));
+      }
+      return flag;
+    }
+
+    function limpiar(){
+      document.getElementById("txDNI").value = "";
+      document.getElementById("txCandidato").value = "";
+      document.getElementById("txSexo").value = "";
+    }
+
+    function verificarDni(unDni){
+      var flag =  !isNaN(unDni) && unDni >= 10000000 && unDni <= 99999999; //verifico si esta fuera de rango y si es un numero
+      if (flag){
+        //si no esta fuera de rango, verifico si ya voto
+        if (yaVoto(unDni)) {
+          flag = false;
+          reportarError(document.getElementById("txDNI"));
+          alert("Esta persona ya emitió su voto. El fraude está mal claro que sí");
+        } else {
+          verificado(document.getElementById("txDNI"));
+        }
+      } else {
+        reportarError(document.getElementById("txDNI"));
+      }
+      return flag;
+    }
+
+    function yaVoto(unDni){
+      var flag = false; 
+      var i = 0;
+
+      while (!flag && i < RegistroVotantes.length){
+        if (RegistroVotantes[i] === unDni){
+          flag = true;
+        } else {
+          i++;
+        }
+      }
+
+      return flag;
+    }
+    
+//sirve para reportar que el input es incorrecto
+function reportarError(elem){
+    elem.style.borderColor = "red";
+  }
+
+  //sirve para reportar que el input es correcto
+  function verificado(elem){
+    elem.style.borderColor = "green";
+  }
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <div id="header">
+    <div id="logo" style="margin-left: 15px">
+      <h1><a href="#">Programación Estática y Laboratorio Web</a></h1>
+      <h2><a href="#">Parcial JS - 27/06/2023</a></h2>
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="Consigna.html">Consigna</a></li>
+      <li><a href="EjercicioJSParcial.html">HOJA Ejercicio</a></li>
+    </ul>
+  </div>
+  <div id="content">
+
+    <form>
+      <table style="padding: 10px;">
+        <tr>
+          <td>Candidato:</td>
+          <td><input id="txCandidato" name="txCandidato" type="text" style="width:280px" /></td>
+        </tr>
+        <tr>
+          <td>DNI:</td>
+          <td><input id="txDNI" name="txDNI" type="text" style="width:280px" /></td>
+        </tr>
+        <tr>
+          <td>Sexo:</td>
+          <td><input id="txSexo" name="txSexo" type="text" style="width:64px" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="button" value="Registrar" id="inputRegistrar" onclick="registrarVoto()">&nbsp;<input type="button" value="Cierre de mesa" onclick="cerrarMesa()"></td>
+        </tr>
+
+      </table>
+    </form>
+    <p></p>
+
+    <div id="dResultados" style="display: nosne;">
+      <h2>Resultados:</h2>
+      <!-- Ingrese aquí quien gano, por cuantos votos, y su imagen-->
+    </div>
+
+
+    <div style="background-color: lightblue; border: 1px solid black;padding: 10px;">
+      <span id="ResultadosKang" style="font-size: 72px;">0</span>
+      <img src="images/VoteKang.png" height="80" style="float:right">
+
+    </div>
+    <br />
+
+    <div style="background-color: lightpink; border: 1px solid black;padding: 10px;">
+      <span id="ResultadosKodos" style="font-size: 72px;">0</span>
+      <img src="images/VoteKodos.png" height="80" style="float:right">
+
+    </div>
+    <br />
+
+    <div style="padding: 10px;">
+      <span style="font-size: 36px;">En Blanco: </span> <span id="ResultadosBlanco" style="font-size: 36px;">0</span>
+    </div>
+
+    <br />
+
+    Votantes:
+    <div id="Votantes" style="border: 1px solid black;padding: 10px;">
+
+
+    </div>
+
+
+    </table>
+
+  </div>
+  <div id="footer" style="margin-top: 240px;">
+    <p id="legal">Copyright &copy; AtomoHost. All Rights Reserved.
+      Designed by <a href="http://www.freecsstemplates.org/">Free CSS
+        Templates</a>.</p>
+    <p id="links"><a href="#">Privacy Policy</a> | <a href="#">Terms
+        of Use</a></p>
+  </div>
+  <br />
+  <br />
+</body>
+
+</html>
